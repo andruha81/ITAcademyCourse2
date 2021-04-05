@@ -2,14 +2,15 @@ package com.itacademy.task1.entities;
 
 public abstract class Aircraft {
 
-    private final String manufacturer;
-    private final String model;
-    private final int seatsNumber;
-    private final int payload;
-    private final int range;
-    private final double fuelBurn;
-    private boolean isEnginesWorking;
-    private boolean isInFlight;
+    protected final String manufacturer;
+    protected AircraftType type;
+    protected final String model;
+    protected final int seatsNumber;
+    protected final int payload;
+    protected final int range;
+    protected final double fuelBurn;
+    protected boolean isEnginesWorking;
+    protected boolean isInFlight;
 
     protected Aircraft(String manufacturer, String model, int seatsNumber, int payload, int range, double fuelBurn) {
         this.manufacturer = manufacturer;
@@ -22,7 +23,7 @@ public abstract class Aircraft {
 
     @Override
     public String toString() {
-        return String.format("Aircraft %s %s, range %s", this.manufacturer, this.model, this.range);
+        return String.format("Aircraft %s %s", this.manufacturer, this.model);
     }
 
     public int getSeatsNumber() {
@@ -41,6 +42,10 @@ public abstract class Aircraft {
         return fuelBurn;
     }
 
+    public String getType() {
+        return type.getType();
+    }
+
     public boolean isEnginesWorking() {
         return isEnginesWorking;
     }
@@ -49,16 +54,14 @@ public abstract class Aircraft {
         return isInFlight;
     }
 
-    public boolean takeoff() {
+    public void takeoff() {
         setEnginesWorking(true);
         isInFlight = true;
-        return true;
     }
 
-    public boolean land() {
+    public void land() {
         setEnginesWorking(false);
         isInFlight = false;
-        return true;
     }
 
     public abstract boolean filling();
